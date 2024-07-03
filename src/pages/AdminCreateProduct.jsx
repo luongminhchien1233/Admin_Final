@@ -65,7 +65,7 @@ const AdminCreateProduct = () => {
                 productData.append("images", image?.file); // Append images to the FormData
             });
             
-            const { data } = axios.post(
+            const { data } = await axios.post(
                 "https://api-nhaxinh.onrender.com/api/product/create-product",
                 productData
             );
@@ -75,7 +75,6 @@ const AdminCreateProduct = () => {
             }
             
         } catch (error) {
-            console.log(error);
             toast.error("something went wrong");
         }
     };
@@ -112,15 +111,12 @@ const AdminCreateProduct = () => {
     
     return (
         <Layout>
-            <div className="flex flex-row h-auto m-8 mx-24">
-            <div class="basis-1/6 h-100% bg-slate-100">
-                <AdminMenu />
-            </div>
+            <div className="flex flex-row h-auto m-8 mt-0 justify-center">
             <div class="basis-4/6 text-center m-4 flex flex-col items-center">
                 <h1 className="text-center w-full text-3xl">Create New Product</h1>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Name<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={name}
                         onChange={(e)=>{
                             setName(e.target.value);
@@ -129,7 +125,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Code<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={code}
                         onChange={(e)=>{
                             setCode(e.target.value);
@@ -138,7 +134,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Descripttion<span class="required">*</span></label>
-                    <textarea className="p-2 rounded border-2 border-gray-300 resize-none active:outline-none focus:outline-none
+                    <textarea className=" rounded-lg p-2 rounded border-2 border-gray-300 resize-none active:outline-none focus:outline-none
                         overflow-hidden text-lg
                     " placeholder="Type Desc"
                     value={desc} onChange={e => {
@@ -149,7 +145,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Short Descripttion<span class="required">*</span></label>
-                    <textarea className="p-2 rounded border-2 border-gray-300 resize-none active:outline-none focus:outline-none
+                    <textarea className=" rounded-lg p-2 rounded border-2 border-gray-300 resize-none active:outline-none focus:outline-none
                         overflow-hidden text-lg
                     " placeholder="Type Desc"
                     value={shortDesc} onChange={e => {
@@ -187,7 +183,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Dimensions<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={dimensions}
                         onChange={(e)=>{
                             setDimensions(e.target.value);
@@ -196,7 +192,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Collection<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={collection}
                         onChange={(e)=>{
                             setCollection(e.target.value);
@@ -205,7 +201,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Materials<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={materials}
                         onChange={(e)=>{
                             setMaterials(e.target.value);
@@ -214,7 +210,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Price<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={price}
                         onChange={(e)=>{
                             setPrice(e.target.value);
@@ -224,7 +220,7 @@ const AdminCreateProduct = () => {
                 </div>
                 <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Quantity<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300"
+                    <input className="rounded-lg form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300"
                         value={quantity}
                         onChange={(e)=>{
                             setQuantity(e.target.value);

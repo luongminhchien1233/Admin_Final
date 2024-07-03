@@ -23,27 +23,23 @@ const getProducts = async () => {
 };
 
   return (
-    <div className="flex flex-row h-auto m-8 mx-24">
-        <div class="basis-1/6 h-100% bg-slate-100">
-            <AdminMenu />
-        </div>
-        <div class="basis-4/6 text-center m-4 flex flex-col">
-            <h1 className="text-center w-full text-3xl">Admin Products</h1>
-              <div class="flex justify-start mb-8 mt-16">
-                <button className="bg-blue-500 p-8 text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2 mx-4 rounded-lg"
-                    onClick={() => {
-                      navigate(`/dashboard/create-product`);
-                    }}
-                >Create Product</button>
-              </div>
-            <div className="w-full md:flex md:flex-wrap md:justify-self-center mt-4">
-                {products?.map((p, index) => (
-                    <>
-                        <ProductItem product={p} images={p.images}/>
-                    </>
-                ))}
+    <div className="w-full flex flex-row h-auto m-8 mt-0">
+      <div class="w-full text-center m-4 flex flex-col">
+            <div class="flex justify-start mb-8">
+              <button className="bg-blue-500 p-8 text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2 mx-4 rounded-lg"
+                  onClick={() => {
+                    navigate(`/dashboard/create-product`);
+                  }}
+              >Create New Product</button>
             </div>
-        </div>
+          <div className="w-full md:flex md:flex-wrap md:justify-self-center mt-4">
+              {products?.map((p, index) => (
+                  <>
+                    <ProductItem product={p} images={p.images}/>
+                  </>
+              ))}
+          </div>
+      </div>
     </div>
   )
 }

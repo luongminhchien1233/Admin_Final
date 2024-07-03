@@ -101,78 +101,166 @@ const AdminCategory = () => {
     getAllCategory();
   }, [])
   return (
-    <Layout title={"Admin Category"}>
-        <div className="flex flex-row h-auto m-8 mx-24">
-        <div class="basis-1/6 h-100% bg-slate-100">
-            <AdminMenu />
-        </div>
-        <div class="basis-4/6 text-center m-4 flex flex-col">
-            <div class="w-full mb-12">
-                <h1 className="text-3xl text-left">Manage Category</h1>
-                <CategoryForm
-                    handleSubmit={handleSubmit}
-                    value={name}
-                    setValue={setName}
-                    roomId={roomId}
-                    setRoomId={setRoomId}
-                    rooms={rooms}
-                />
-            </div>
-            <div class="w-full mb-8">
-                <table class="table-fixed w-full">
-                    <thead>
-                        <tr>
-                        <th>Name</th>
-                        <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {categories?.map((c) => (
-                        <>
-                        <tr>
-                            <td key={c._id}>{c.nameCate}</td>
-                            <td>
-                            <button className="bg-blue-500 border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2 mx-4"
-                                onClick={() => {
-                                  setVisible(true);
-                                  setUpdatedName(c.nameCate);
-                                  //setUpadteRoomId(c.roomId);
-                                  setSelected(c);
-                                }}
-                            >
-                                Edit
-                            </button>
-                            <button className="bg-red-600 border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2"
-                                onClick={() => {
-                                  handleDelete(c._id);
-                                }}
-                            >
-                                Delete
-                            </button>
-                            </td>
-                        </tr>
-                        </>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <Modal
-              onCancel={() => setVisible(false)}
-              footer={null}
-              visible={visible}
+    // <div class="basis-4/6 text-center m-4">
+    //     {/* <div class="w-full mb-12">
+    //         <h1 className="text-3xl text-left">Category</h1>
+    //         <CategoryForm
+    //             handleSubmit={handleSubmit}
+    //             value={name}
+    //             setValue={setName}
+    //             roomId={roomId}
+    //             setRoomId={setRoomId}
+    //             rooms={rooms}
+    //         />
+    //     </div> */}
+      
+    //     <div class="w-full mb-8">
+    //         <table class="table-fixed w-full">
+    //             <thead>
+    //                 <tr>
+    //                 <th>Name</th>
+    //                 <th>Actions</th>
+    //                 </tr>
+    //             </thead>
+    //             <tbody>
+    //                 {categories?.map((c) => (
+    //                 <>
+    //                 <tr>
+    //                     <td key={c._id}>{c.nameCate}</td>
+    //                     <td>
+    //                     <button className="bg-blue-500 border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2 mx-4"
+    //                         onClick={() => {
+    //                           setVisible(true);
+    //                           setUpdatedName(c.nameCate);
+    //                           //setUpadteRoomId(c.roomId);
+    //                           setSelected(c);
+    //                         }}
+    //                     >
+    //                         Edit
+    //                     </button>
+    //                     <button className="bg-red-600 border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2"
+    //                         onClick={() => {
+    //                           handleDelete(c._id);
+    //                         }}
+    //                     >
+    //                         Delete
+    //                     </button>
+    //                     </td>
+    //                 </tr>
+    //                 </>
+    //                 ))}
+    //             </tbody>
+    //         </table>
+    //     </div>
+    //     <Modal
+    //       onCancel={() => setVisible(false)}
+    //       footer={null}
+    //       visible={visible}
+    //     >
+    //       <CategoryForm
+    //         handleSubmit={handleUpdate}
+    //         value={updatedName}
+    //         setValue={setUpdatedName}
+    //         roomId={updateRoomId}
+    //         setRoomId={setUpadteRoomId}
+    //         rooms={rooms}
+    //       />
+    //     </Modal>
+    // </div>  
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="sm:flex sm:items-center">
+          <div className="sm:flex-auto">
+            <h1 className="text-base font-semibold leading-6 text-gray-900">Categories</h1>
+            <p className="mt-2 text-sm text-gray-700">
+              A list of all the cateogry.
+            </p>
+          </div>
+          {/* <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            <button
+              type="button"
+              className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              <CategoryForm
-                handleSubmit={handleUpdate}
-                value={updatedName}
-                setValue={setUpdatedName}
-                roomId={updateRoomId}
-                setRoomId={setUpadteRoomId}
-                rooms={rooms}
-              />
-            </Modal>
-        </div>      
-    </div>
-    </Layout>
+              Create New Category
+            </button>
+          </div> */}
+        </div>
+        <div class="w-1/2 mb-12">
+             <CategoryForm
+                 handleSubmit={handleSubmit}
+                 value={name}
+                 setValue={setName}
+                 roomId={roomId}
+                 setRoomId={setRoomId}
+                 rooms={rooms}
+             />
+        </div>
+        <div className="mt-8 flow-root">
+          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-36">
+                        Name
+                      </th>
+                      <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                        <span className="sr-only">Edit</span>
+                      </th>
+                      <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                        <span className="sr-only">Delete</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    {categories.map((category) => (
+                      <tr key={category.nameCate}>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-24">
+                          {category.nameCate}
+                        </td>
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <button className="text-indigo-600 hover:text-indigo-900"
+                            onClick={() => {
+                              setVisible(true);
+                              setUpdatedName(category.nameCate);
+                              setSelected(category);
+                            }}
+                          >
+                            Edit<span className="sr-only"></span>
+                          </button>
+                        </td>
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <button className="text-red-600 hover:text-red-900"
+                            onClick={() => {
+                              handleDelete(category._id);
+                            }}
+                          >
+                            Delete<span className="sr-only"></span>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Modal
+            onCancel={() => setVisible(false)}
+            footer={null}
+            visible={visible}
+          >
+            <CategoryForm
+              handleSubmit={handleUpdate}
+              value={updatedName}
+              setValue={setUpdatedName}
+              roomId={updateRoomId}
+              setRoomId={setUpadteRoomId}
+              rooms={rooms}
+            />
+          </Modal>
+      </div>
   )
 }
 

@@ -167,11 +167,7 @@ const AdminProductDetails = () => {
     }, []);
 
     return (
-        <Layout>
-            <div className="flex flex-row h-auto m-8 mx-24">
-            <div class="basis-1/6 h-100% bg-slate-100">
-                <AdminMenu />
-            </div>
+        <div className="flex flex-row h-auto justify-center">
             <div class="basis-4/6 text-center m-4 flex flex-col items-center">
                 <h1 className="text-center w-full text-3xl">Edit Product</h1>
                 <div class="flex flex-col mt-4 w-3/4">
@@ -303,18 +299,6 @@ const AdminProductDetails = () => {
                 </div>
                 <div className="flex flex-col mt-4 w-3/4 mx-auto">
                     <h1 className="text-center w-full text-3xl mt-8">Edit Product Image</h1>
-                    {/* <label className="text-left text-lg mb-4"for="">Upload New Image<span class="required">*</span></label>
-                    <input 
-                    type="file" 
-                    multiple 
-                    //onChange={handleImageChange}
-                    className="mb-4"
-                    />
-                    <div class="flex flex-col mt-4 w-1/3">
-                        <button className="bg-blue-500 p-8 text-[20px] px-2 py-2 uppercase text-white cursor-pointer mt-2 rounded-lg w-auto mb-8"
-                            
-                        >Upload</button>
-                    </div> */}
                     <label className="text-left text-lg mb-4"for="">Images<span class="required">*</span></label>
                     <div className="grid grid-cols-3 gap-4">
                     {images.map((image, index) => (
@@ -331,17 +315,6 @@ const AdminProductDetails = () => {
                         >
 
                         </FileInput>
-                        {/* <button 
-                            //onClick={() => handleDelete(index)}
-                            className="absolute top-0 right-100 bg-yellow-600 text-white rounded-full px-4 py-2"
-                        >
-                            Edit
-                        </button>
-                        <input
-                            type="file"
-                            style={{ display: 'none' }}
-                            onChange={(e) => console.log(e.target.files)}
-                        /> */}
                         <button 
                             onClick={() => handleDeleteImage(index)}
                             className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-4 py-2"
@@ -353,8 +326,7 @@ const AdminProductDetails = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        </Layout>
+        </div>      
     )
 }
 

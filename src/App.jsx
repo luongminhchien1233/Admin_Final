@@ -15,6 +15,15 @@ import StaffDashboard from "./pages/StaffDashBoard";
 import StaffUser from "./pages/StaffUser";
 import StaffOrder from "./pages/StaffOrder";
 import StaffOrderDetail from "./pages/StaffOrderDetail";
+import NewDashboard from "./pages/NewDashboard";
+import NewUser from "./pages/NewUser";
+import NewCategory from "./pages/NewCategory";
+import NewProduct from "./pages/NewProduct";
+import NewCreateProduct from "./pages/NewCreateProduct";
+import NewProductDetail from "./pages/NewProductDetail";
+import NewOrder from "./pages/NewOrder";
+import NewReview from "./pages/NewReview";
+import NewOrderDetail from "./pages/NewOrderDetail";
 
 function App() {
   return (
@@ -22,15 +31,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="home" element={<AdminDashboard />} />
-          <Route path="category" element={<AdminCategory />} />
-          <Route path="user" element={<AdminUser />} />
-          <Route path="review" element={<AdminReview />} />
-          <Route path="order" element={<AdminOrder />} />
-          <Route path="order/:id" element={<AdminOrderDetail />} />
-          <Route path="product" element={<AdminProducts />} />
-          <Route path="create-product" element={<AdminCreateProduct />} />
-          <Route path="product/product-info/:slug" element={<AdminProductDetails />} />
+          <Route path="home" element={<NewDashboard />} />
+          <Route path="user" element={<NewUser />} />
+          <Route path="category" element={<NewCategory />} />
+          <Route path="review" element={<NewReview />} />
+          <Route path="order" element={<NewOrder />} />
+          <Route path="order/:id" element={<NewOrderDetail />} />
+          <Route path="product" element={<NewProduct />} />
+          <Route path="create-product" element={<NewCreateProduct />} />
+          <Route path="product/product-info/:slug" element={<NewProductDetail />} />
         </Route>
         <Route path="/staff" element={<PrivateRoute />}>
           <Route path="home" element={<StaffDashboard />} />
