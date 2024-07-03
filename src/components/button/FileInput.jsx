@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { FaEdit } from "react-icons/fa";
+
 const FileInput = ({productId, imgId, onUploadSuccess}) => {
     const fileInputRef = useRef(null);
 
@@ -43,8 +45,9 @@ const FileInput = ({productId, imgId, onUploadSuccess}) => {
         <>
             <button 
                 onClick={() => handleClick()}
-                className="absolute top-0 right-300 bg-yellow-600 text-white rounded-full px-3 py-2"
+                className="top-0 absolute inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
+                <FaEdit className="-ml-0.5 h-5 w-5" aria-hidden="true" />
                 Edit
             </button>
             <input

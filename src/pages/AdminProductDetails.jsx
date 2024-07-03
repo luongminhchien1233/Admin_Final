@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import Layout from "../components/form/Auth/Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import FileInput from "../components/button/FileInput";
+import { MdDeleteOutline } from "react-icons/md";
+import { FaImages } from "react-icons/fa";
 
 const AdminProductDetails = () => {
     const [categories, setCategories] = useState([]);
@@ -29,11 +31,11 @@ const AdminProductDetails = () => {
     const [images, setImages] = useState([]);
     const params = useParams();
 
-    const getAllRoom = async() =>{
-        try{
+    const getAllRoom = async () => {
+        try {
             const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/room/all");
             setRooms(data?.data);
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
@@ -47,7 +49,7 @@ const AdminProductDetails = () => {
                 if (data?.status === "success") {
                     onUpdateProduct();
                 } else {
-                    
+
                 }
             })
             .catch(error => {
@@ -60,28 +62,28 @@ const AdminProductDetails = () => {
         await getProduct();
     };
 
-    
-    const handleDelete = async ()=>{
-        try{
+
+    const handleDelete = async () => {
+        try {
             const { data } = await axios.delete(`https://api-nhaxinh.onrender.com/api/product/${id}`,
-                
+
             );
-            if(data?.status == "success"){
+            if (data?.status == "success") {
                 //toast.success(data?.message);
                 navigate(`/dashboard/product`);
             }
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
 
-    const handleUpdate = async()=>{
+    const handleUpdate = async () => {
         // console.log(JSON.stringify([
         //     { k: "dimensions", v: dimensions },
         //     { k: "collection", v: collection },
         //     { k: "materials", v: materials }
         // ]))
-        try{
+        try {
             const { data } = await axios.put(`https://api-nhaxinh.onrender.com/api/product/updateProduct/${id}`,
                 {
                     name: name,
@@ -97,12 +99,12 @@ const AdminProductDetails = () => {
                     ],
                     price: price,
                     quantity: quantity,
-                } 
+                }
             );
-            if(data?.status == "success"){
+            if (data?.status == "success") {
                 toast.success(data?.message);
             }
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
@@ -126,28 +128,28 @@ const AdminProductDetails = () => {
             setQuantity(data?.data?.quantity);
             setPrice(data?.data?.price);
             setId(data?.data?._id);
-            
+
         } catch (error) {
             console.log(error);
         }
     };
 
-    const getCategoryByRoom= async(pId) =>{
-        try{
+    const getCategoryByRoom = async (pId) => {
+        try {
             const { data } = await axios.get(`https://api-nhaxinh.onrender.com/api/room/getCateByRoom/${pId}`);
             setCategories(data?.data?.categories);
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
 
     useEffect(() => {
-        if(room != "")
+        if (room != "")
             getCategoryByRoom(room);
     }, [room]);
 
     useEffect(() => {
-        if (params?.slug){
+        if (params?.slug) {
             getProduct();
         }
     }, [params?.slug]);
@@ -162,60 +164,73 @@ const AdminProductDetails = () => {
         shortDescRef.current.style.height = shortDescRef.current.scrollHeight + "px";
     }, [shortDesc])
 
-    useEffect(()=>{
+    useEffect(() => {
         getAllRoom();
     }, []);
 
     return (
-        <div className="flex flex-row h-auto justify-center">
-            <div class="basis-4/6 text-center m-4 flex flex-col items-center">
-                <h1 className="text-center w-full text-3xl">Edit Product</h1>
-                <div class="flex flex-col mt-4 w-3/4">
+        <div className="flex flex-row h-auto mx-auto">
+            <div class="basis-4/6 m-4 flex flex-col">
+                <h1 className="w-full text-3xl">Edit Product</h1>
+                {/* <div class="flex flex-col mt-4 w-3/4">
                     <label className="text-left text-lg"for="">Name<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                    <input className="form-control w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
                         value={name}
                         onChange={(e)=>{
                             setName(e.target.value);
                         }}
                     ></input>
+                </div> */}
+                <div className="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">
+                        Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        value={name}
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
+                        className="block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
                 </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Code<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">
+                        Code <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        className="block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         value={code}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                             setCode(e.target.value);
                         }}
                     ></input>
                 </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Descripttion<span class="required">*</span></label>
-                    <textarea className="p-2 rounded border-2 border-gray-300 resize-none active:outline-none focus:outline-none
-                        overflow-hidden text-lg
-                    " placeholder="Type Desc"
-                    value={desc} onChange={e => {
-                        setDesc(e.target.value);
-                    }} rows="2" ref={descRef}
-                        
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Descripttion <span className="text-red-500">*</span></label>
+                    <textarea className="block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="Type Desc"
+                        value={desc} onChange={e => {
+                            setDesc(e.target.value);
+                        }} rows="2" ref={descRef}
+
                     ></textarea>
                 </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Short Descripttion<span class="required">*</span></label>
-                    <textarea className="p-2 rounded border-2 border-gray-300 resize-none active:outline-none focus:outline-none
-                        overflow-hidden text-lg
-                    " placeholder="Type Desc"
-                    value={shortDesc} onChange={e => {
-                        setShortDesc(e.target.value);
-                    }} rows="1" ref={shortDescRef}
-                        
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Short Descripttion <span className="text-red-500">*</span></label>
+                    <textarea className="block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="Type Desc"
+                        value={shortDesc} onChange={e => {
+                            setShortDesc(e.target.value);
+                        }} rows="1" ref={shortDescRef}
+
                     ></textarea>
                 </div>
-                <div class="flex flex-col  mt-4 w-3/4">
-                    <label className="text-left my-4"for="district">Room&nbsp;<span class="required">*</span></label>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold" for="district">Room&nbsp;<span className="text-red-500">*</span></label>
                     <select id="district" class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         onChange={(e) => {
                             setRoom(e.target.value);
-                            getCategoryByRoom(e.target.value);   
+                            getCategoryByRoom(e.target.value);
                         }} value={room}
                     >
                         <option selected>Choose Room</option>
@@ -224,8 +239,8 @@ const AdminProductDetails = () => {
                         ))}
                     </select>
                 </div>
-                <div class="flex flex-col  mt-4 w-3/4">
-                    <label className="text-left my-4"for="district">Room&nbsp;<span class="required">*</span></label>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold" for="district">Category&nbsp;<span className="text-red-500">*</span></label>
                     <select id="district" class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         onChange={(e) => {
                             setCategory(e.target.value);
@@ -237,96 +252,141 @@ const AdminProductDetails = () => {
                         ))}
                     </select>
                 </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Dimensions<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
-                        value={dimensions}
-                        onChange={(e)=>{
-                            setDimensions(e.target.value);
-                        }}
-                       
-                    ></input>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Images&nbsp;<span className="text-red-500">*</span></label>
+                    <div className="w-auto h-auto">
+                        {images.map((image, index) => (
+                            <div key={index} className="relative mt-2 w-[450px] h-[300px]">
+                                <img
+                                    src={image.url}
+                                    alt={`upload-${index}`}
+                                    className="bg-cover"
+                                />
+                                <FileInput
+                                    productId={id}
+                                    imgId={image._id}
+                                    onUploadSuccess={onUpdateProduct}
+                                >
+                                </FileInput>
+                                <button
+                                    onClick={() => handleDeleteImage(index)}
+                                    className="right-0 top-0 absolute inline-flex items-center gap-x-1.5 rounded-md bg-red-300 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                >
+                                    <MdDeleteOutline className="-ml-0.5 h-5 w-5" />
+                                    Delete
+                                </button>
+                            </div>
+                        ))}
+                        <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div className="text-center">
+                                <FaImages className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                                <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                    <label
+                                        htmlFor="file-upload"
+                                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                    >
+                                        <span>Upload a file</span>
+                                        <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                    </label>
+                                    <p className="pl-1">or drag and drop</p>
+                                </div>
+                                <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Collection<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
-                        value={collection}
-                        onChange={(e)=>{
-                            setCollection(e.target.value);
-                        }}
-                       
-                    ></input>
-                </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Materials<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
-                        value={materials}
-                        onChange={(e)=>{
-                            setMaterials(e.target.value);
-                        }}
-                       
-                    ></input>
-                </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Price<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300 active:outline-none focus:outline-none"
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Price&nbsp;<span className="text-red-500">*</span></label>
+                    <input
+                        className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         value={price}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                             setPrice(e.target.value);
                         }}
                         type="number"
                     ></input>
                 </div>
-                <div class="flex flex-col mt-4 w-3/4">
-                    <label className="text-left text-lg"for="">Quantity<span class="required">*</span></label>
-                    <input className="form-control  w-full mr-16 mt-4 p-4 border-2 border-gray-300"
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Sale&nbsp;<span className="text-red-500">*</span></label>
+                    <input
+                        className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        // value={quantity}
+                        // onChange={(e) => {
+                        //     setQuantity(e.target.value);
+                        // }}
+                        type="number"
+                    ></input>
+                </div>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Quantity&nbsp;<span className="text-red-500">*</span></label>
+                    <input
+                        className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         value={quantity}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                             setQuantity(e.target.value);
                         }}
                         type="number"
                     ></input>
                 </div>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Enable&nbsp;<span className="text-red-500">*</span></label>
+                    <select id="district" class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        // onChange={(e) => {
+                        //     setCategory(e.target.value);
+                        // }} value={category}
+                    >
+                        <option selected>True</option>
+                        <option selected>False</option>
+                    </select>
+                </div>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Dimensions&nbsp;<span className="text-red-500">*</span></label>
+                    <input
+                        className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value={dimensions}
+                        onChange={(e) => {
+                            setDimensions(e.target.value);
+                        }}
+
+                    ></input>
+                </div>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Collection&nbsp;<span className="text-red-500">*</span></label>
+                    <input
+                        className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value={collection}
+                        onChange={(e) => {
+                            setCollection(e.target.value);
+                        }}
+
+                    ></input>
+                </div>
+                <div class="mt-5 w-3/4">
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Materials&nbsp;<span className="text-red-500">*</span></label>
+                    <input
+                        className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value={materials}
+                        onChange={(e) => {
+                            setMaterials(e.target.value);
+                        }}
+
+                    ></input>
+                </div>
                 <div class="flex flex-col mt-4 w-1/2">
-                    <button className="bg-blue-500 p-8 text-[20px] px-2 py-2 uppercase text-white cursor-pointer mt-2 mx-4 rounded-lg w-auto"
+                    <button
+                        className="rounded-md w-40 bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         onClick={handleUpdate}
                     >Update Product</button>
                 </div>
-                <div class="flex flex-col mt-4 w-1/2">
-                    <button className="bg-red-500 p-8 text-[20px] px-2 py-2 uppercase text-white cursor-pointer mt-2 mx-4 rounded-lg w-auto"
+                {/* <div class="flex flex-col mt-4 w-1/2">
+                    <button
+                        className="rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         onClick={handleDelete}
                     >Delete Product</button>
-                </div>
-                <div className="flex flex-col mt-4 w-3/4 mx-auto">
-                    <h1 className="text-center w-full text-3xl mt-8">Edit Product Image</h1>
-                    <label className="text-left text-lg mb-4"for="">Images<span class="required">*</span></label>
-                    <div className="grid grid-cols-3 gap-4">
-                    {images.map((image, index) => (
-                        <div key={index} className="relative">
-                        <img 
-                            src={image.url} 
-                            alt={`upload-${index}`} 
-                            className="w-full h-32 object-cover rounded"
-                        />
-                        <FileInput
-                            productId={id}
-                            imgId={image._id}
-                            onUploadSuccess = {onUpdateProduct}
-                        >
-
-                        </FileInput>
-                        <button 
-                            onClick={() => handleDeleteImage(index)}
-                            className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-4 py-2"
-                        >
-                            X
-                        </button>
-                        </div>
-                    ))}
-                    </div>
-                </div>
+                </div> */}
             </div>
-        </div>      
+        </div>
     )
 }
 
