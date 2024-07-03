@@ -25,6 +25,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import AdminProductDetails from './AdminProductDetails';
+import Layout from '../components/form/Auth/Layout'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard/home', icon: HomeIcon, current: false },
@@ -47,6 +48,7 @@ function classNames(...classes) {
 export default function NewProductDetail() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
+    <Layout>
       <div>
         <Dialog className="relative z-50 lg:hidden" open={sidebarOpen} onClose={setSidebarOpen}>
           <DialogBackdrop
@@ -229,5 +231,7 @@ export default function NewProductDetail() {
           </main>
         </div>
       </div>
+    </Layout>
+      
   )
 }

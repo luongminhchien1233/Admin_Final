@@ -26,6 +26,7 @@ import {
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import AdminUser from './AdminUser';
 import AdminCategory from './AdminCategory';
+import Layout from '../components/form/Auth/Layout'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard/home', icon: HomeIcon, current: false },
@@ -48,7 +49,8 @@ function classNames(...classes) {
 export default function NewCategory() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
-    <>
+    <Layout>
+      <>
       <div>
         <Dialog className="relative z-50 lg:hidden" open={sidebarOpen} onClose={setSidebarOpen}>
           <DialogBackdrop
@@ -232,5 +234,6 @@ export default function NewCategory() {
         </div>
       </div>
     </>
+    </Layout>
   )
 }

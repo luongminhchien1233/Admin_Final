@@ -21,6 +21,8 @@ const AdminProductDetails = () => {
     const [materials, setMaterials] = useState("");
     const [desc, setDesc] = useState("");
     const [price, setPrice] = useState(0);
+    const [sale, setSale] = useState(0);
+    const [enable, setEnable] = useState(false);
     const [quantity, setQuantity] = useState(0);
     const [shortDesc, setShortDesc] = useState("");
     const [category, setCategory] = useState("");
@@ -99,6 +101,8 @@ const AdminProductDetails = () => {
                     ],
                     price: price,
                     quantity: quantity,
+                    sale: sale,
+                    enable: enable
                 }
             );
             if (data?.status == "success") {
@@ -128,6 +132,8 @@ const AdminProductDetails = () => {
             setQuantity(data?.data?.quantity);
             setPrice(data?.data?.price);
             setId(data?.data?._id);
+            setSale(data?.data?.sale)
+            setEnable(data?.data?.enable);
 
         } catch (error) {
             console.log(error);
@@ -308,13 +314,13 @@ const AdminProductDetails = () => {
                     ></input>
                 </div>
                 <div class="mt-5 w-3/4">
-                    <label className="block text-sm leading-6 text-gray-900 font-bold">Sale&nbsp;<span className="text-red-500">*</span></label>
+                    <label className="block text-sm leading-6 text-gray-900 font-bold">Sale (%)&nbsp;<span className="text-red-500">*</span></label>
                     <input
                         className="form-control block w-full h-15 rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        // value={quantity}
-                        // onChange={(e) => {
-                        //     setQuantity(e.target.value);
-                        // }}
+                        value={sale}
+                        onChange={(e) => {
+                            setSale(e.target.value);
+                        }}
                         type="number"
                     ></input>
                 </div>
@@ -332,12 +338,12 @@ const AdminProductDetails = () => {
                 <div class="mt-5 w-3/4">
                     <label className="block text-sm leading-6 text-gray-900 font-bold">Enable&nbsp;<span className="text-red-500">*</span></label>
                     <select id="district" class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // onChange={(e) => {
-                        //     setCategory(e.target.value);
-                        // }} value={category}
+                        onChange={(e) => {
+                            setEnable(e.target.value);
+                        }} value={enable}
                     >
-                        <option selected>True</option>
-                        <option selected>False</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
                     </select>
                 </div>
                 <div class="mt-5 w-3/4">

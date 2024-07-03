@@ -29,6 +29,7 @@ import axios from 'axios';
 import AdminDashboard from './AdminDashboard';
 import AdminUser from './AdminUser';
 import AdminOrder from './AdminOrder';
+import Layout from '../components/form/Auth/Layout'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard/home', icon: HomeIcon, current: false },
@@ -51,7 +52,8 @@ function classNames(...classes) {
 export default function NewOrder() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
-    <>
+    <Layout>
+      <>
       <div>
         <Dialog className="relative z-50 lg:hidden" open={sidebarOpen} onClose={setSidebarOpen}>
           <DialogBackdrop
@@ -235,5 +237,7 @@ export default function NewOrder() {
         </div>
       </div>
     </>
+    </Layout>
+    
   )
 }

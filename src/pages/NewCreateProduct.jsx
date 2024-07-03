@@ -30,6 +30,7 @@ import AdminDashboard from './AdminDashboard';
 import AdminUser from './AdminUser';
 import AdminProducts from './AdminProducts';
 import AdminCreateProduct from './AdminCreateProduct';
+import Layout from '../components/form/Auth/Layout'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard/home', icon: HomeIcon, current: false },
@@ -52,7 +53,8 @@ function classNames(...classes) {
 export default function NewCreateProduct() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
-    <>
+    <Layout>
+      <>
       <div>
         <Dialog className="relative z-50 lg:hidden" open={sidebarOpen} onClose={setSidebarOpen}>
           <DialogBackdrop
@@ -236,5 +238,7 @@ export default function NewCreateProduct() {
         </div>
       </div>
     </>
+    </Layout>
+    
   )
 }
