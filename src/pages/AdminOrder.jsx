@@ -48,15 +48,18 @@ const AdminOrder = () => {
     };
 
     const filterOrder = async (statusOrder) =>{
+        setSearchQuery('');
+        handleSearch();
         if (statusOrder != "All") {
-            const { data } = await axios.get(
-                "https://api-nhaxinh.onrender.com/api/order/getAll"
-            );
-            const filteredOrders = data?.data.filter(order => order.status === statusOrder);
-            setOrders(filteredOrders);
-        } else {
-            getOrders();
+            // const { data } = await axios.get(
+            //     "https://api-nhaxinh.onrender.com/api/order/getAll"
+            // );
+            const filteredOrders = orders.filter(order => order.status === statusOrder);
+            setFoundOrders(filteredOrders);
         }
+        // else {
+        //     getOrders();
+        // }
     };
 
     // Hàm convert giá trị total sang định dạng tiền tệ VND (Ví dụ: 203.400.000 VND)
