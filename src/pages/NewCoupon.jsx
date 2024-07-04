@@ -28,17 +28,18 @@ import { useAuth } from '../context/auth';
 import axios from 'axios';
 import AdminDashboard from './AdminDashboard';
 import AdminUser from './AdminUser';
-import AdminProducts from './AdminProducts';
+import AdminReview from './AdminReview';
+import AdminCoupon from "./AdminCoupon";
 import Layout from '../components/form/Auth/Layout'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard/home', icon: HomeIcon, current: false },
   { name: 'Users', href: '/dashboard/user', icon: UsersIcon, current: false },
   { name: 'Categories', href: '/dashboard/category', icon: FolderIcon, current: false },
-  { name: 'Products', href: '/dashboard/product', icon: FolderIcon, current: true },
+  { name: 'Products', href: '/dashboard/product', icon: FolderIcon, current: false },
   { name: 'Orders', href: '/dashboard/order', icon: FolderIcon, current: false },
   { name: 'Review', href: '/dashboard/review', icon: ChatBubbleLeftIcon, current: false },
-  { name: 'Coupon', href: '/dashboard/coupon', icon: TicketIcon, current: false },
+  { name: 'Coupon', href: '/dashboard/coupon', icon: TicketIcon, current: true },
 ]
 
 const userNavigation = [
@@ -49,7 +50,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NewProduct() {
+export default function NewCoupon() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <Layout>
@@ -231,7 +232,7 @@ export default function NewProduct() {
 
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-                <AdminProducts></AdminProducts>
+                <AdminCoupon></AdminCoupon>
             </div>
           </main>
         </div>

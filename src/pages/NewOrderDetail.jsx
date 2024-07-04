@@ -39,7 +39,7 @@ const navigation = [
   { name: 'Products', href: '/dashboard/product', icon: FolderIcon, current: false },
   { name: 'Orders', href: '/dashboard/order', icon: FolderIcon, current: true },
   { name: 'Review', href: '/dashboard/review', icon: ChatBubbleLeftIcon, current: false },
-  { name: 'Coupon', href: '/newreview', icon: TicketIcon, current: false },
+  { name: 'Coupon', href: '/dashboard/coupon', icon: TicketIcon, current: false },
 ]
 
 const userNavigation = [

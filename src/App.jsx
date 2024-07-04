@@ -24,6 +24,7 @@ import NewProductDetail from "./pages/NewProductDetail";
 import NewOrder from "./pages/NewOrder";
 import NewReview from "./pages/NewReview";
 import NewOrderDetail from "./pages/NewOrderDetail";
+import NewCoupon from "./pages/NewCoupon";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="order" element={<NewOrder />} />
           <Route path="order/:id" element={<NewOrderDetail />} />
           <Route path="product" element={<NewProduct />} />
+          <Route path="coupon" element={<NewCoupon />} />
           <Route path="create-product" element={<NewCreateProduct />} />
           <Route path="product/product-info/:slug" element={<NewProductDetail />} />
         </Route>
