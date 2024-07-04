@@ -107,6 +107,7 @@ const AdminProductDetails = () => {
             );
             if (data?.status == "success") {
                 toast.success(data?.message);
+                await getProduct();
             }
         } catch (error) {
             console.log(error);
@@ -137,6 +138,28 @@ const AdminProductDetails = () => {
 
         } catch (error) {
             console.log(error);
+        }
+    };
+
+    const handleUpload = (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            const productData = new FormData();
+            productData.append("images", files[0]); 
+            axios.post(
+                `https://api-nhaxinh.onrender.com/api/product/updateImageAdd/${id}`,
+                productData
+            ).then(response => {
+                const data = response.data;
+                if (data?.status === "success") {
+                    toast.success(data?.message);
+                    return getProduct();
+                } else {
+                    toast.error(data?.message);
+                }
+            }).catch(error =>{
+                toast.error(error.response.data.message);
+            });
         }
     };
 
@@ -292,7 +315,7 @@ const AdminProductDetails = () => {
                                         className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                     >
                                         <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                        <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleUpload} />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
                                 </div>

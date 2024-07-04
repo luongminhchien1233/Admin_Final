@@ -1,0 +1,61 @@
+1. **Phương thức thanh toán**:
+    - COD (Thanh toán khi nhận hàng)
+    - VNPay
+2. **Chính sách**
+    
+    Các sản phẩm nội thất tại LC đa số đều được sản xuất tại nhà máy của công ty cổ phần xây dựng kiến trúc AA với đội ngũ nhân viên và công nhân ưu tú cùng cơ sở vật chất hiện đại . LC đã kiểm tra kỹ lưỡng từ nguồn nguyên liệu cho đến sản phẩm hoàn thiện cuối cùng.
+    
+    LC bảo hành một năm cho các trường hợp có lỗi về kỹ thuật trong quá trình sản xuất hay lắp đặt.
+    
+    Quý khách không nên tự sửa chữa mà hãy báo ngay cho LC qua hotline: 1800 7200.
+    
+    Sau thời gian hết hạn bảo hành, nếu quý khách có bất kỳ yêu cầu hay thắc mắc thì vui lòng liên hệ với LC để được hướng dẫn và giải quyết các vấn đề gặp phải.
+    
+    **TUY NHIÊN LC KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG HỢP SAU:**
+    
+    Khách hàng tự ý sửa chữa khi sản phẩm bị trục trặc mà không báo cho LC.
+    
+    Sản phẩm được sử dụng không đúng quy cách của sổ bảo hành (được trao gửi khi quý khách mua sản phẩm) gây nên trầy xước, móp, dơ bẩn hay mất màu.
+    
+    Sản phẩm bị biến dạng do môi trường bên ngoài bất bình thường (quá ẩm, quá khô, mối hay do tác động từ các thiết bị điện nước, các hóa chất hay dung môi khách hàng sử dụng không phù hợp).
+    
+    Sản phẩm hết hạn bảo hành.
+    
+    Sản phẩm không có phiếu bảo hành của LC.
+    
+    Xem nội dung sổ bảo hành
+    
+    **GIAO HÀNG TẬN NƠI**
+    
+    LC cung cấp dịch vụ giao hàng tận nơi, lắp ráp và sắp xếp vị trí theo đúng ý muốn của quý khách:
+    
+    - MIỄN PHÍ giao hàng trong các Quận nội thành Tp.Hồ Chí Minh và Hà Nội, áp dụng cho các đơn hàng trị giá trên 10 triệu.
+    - Đối với khu vực các tỉnh lân cận: Tính phí hợp lý theo dựa trên quãng đường vận chuyển
+3. **Thông tin liên hệ**:
+    - Số điện thoại: 0964250552
+    - Email: [lcstorecare@akacompany.com.vn](mailto:lcstorecare@akacompany.com.vn)
+    - Địa chỉ cửa hàng: Số 1 Võ Văn Ngân , Thủ Đức, Thành Phố Hồ Chí Minh
+4. **Câu hỏi thường gặp**:
+    - Thời gian giao hàng thường từ 3-5 ngày tùy khoảng cách địa lý
+    - Có hỗ trợ lắp đặt tận nhà
+5. Câu hỏi về gợi ý sản phẩm:
+    
+    Trước tiên hãy hỏi độ tuổi sau đó hỏi phong cách mà user muốn từ đó đưa ra giải pháp
+    
+    ### Gợi ý sản phẩm theo độ tuổi và phong cách
+    
+    1. **Dưới 18 đến 30 tuổi**
+        - **Phong cách cổ điển**
+            - https://ecom-noithat.vercel.app/product/sofa-coastal-2-cho-kd1085-18-xanh-m2
+        - **Phong cách hiện đại**
+            - https://ecom-noithat.vercel.app/product/sofa-dubai-25-cho-hien-djai-da-simili-be36
+    2. **31 đến 50 tuổi**
+        - **Phong cách cổ điển**
+            - https://ecom-noithat.vercel.app/product/sofa-combo-3-cho-da-bali-520
+        - **Phong cách hiện đại**
+            - https://ecom-noithat.vercel.app/product/sofa-bridge-3-cho-hien-djai-da-cognac
+    3. **Trên 50 tuổi**
+        - **Phong cách cổ điển**
+            - https://ecom-noithat.vercel.app/product/sofa-miami-2-cho-vai-xam
+        - **Phong cách hiện đại**
+            - https://ecom-noithat.vercel.app/product/sofa-bridge-3-cho-hien-djai-da-cognac
