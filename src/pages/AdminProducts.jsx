@@ -109,7 +109,7 @@ const AdminProducts = () => {
               <tbody className="divide-y divide-gray-200 bg-white">
                 {results.map((products) => (
                   <tr key={products.name}>
-                    <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><img className="h-14 w-14" src={products.images[0].url} alt="" /></td>
+                    <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><img className="h-14 w-14" src={products?.images[0]?.url} alt="" /></td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-black font-semibold">{products.code}</td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-black">{products.name}</td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-black">{formatCurrency(products.price)}</td>

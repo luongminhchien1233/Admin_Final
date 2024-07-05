@@ -22,7 +22,7 @@ const AdminProductDetails = () => {
     const [desc, setDesc] = useState("");
     const [price, setPrice] = useState(0);
     const [sale, setSale] = useState(0);
-    const [enable, setEnable] = useState(false);
+    const [enable, setEnable] = useState(true);
     const [quantity, setQuantity] = useState(0);
     const [shortDesc, setShortDesc] = useState("");
     const [category, setCategory] = useState("");
