@@ -72,6 +72,7 @@ const AdminOrderDetail = () => {
                     <h1 className="text-left w-full text-3xl my-2">Thông tin đơn hàng</h1>
                     <h1 className="text-left w-full text-lg my-2">OrderId : {order?.orderId}</h1>
                     <h1 className="text-left w-full text-lg my-2">Phương thức thanh toán : {order?.PaymentMethod}</h1>
+                    <h1 className="text-left w-full text-lg my-2">Trạng thái thanh toán thanh toán : {order?.PaymentStatus}</h1>
                     <h1 className="text-left w-full text-lg my-2">Số điện thoại đặt hàng : {order?.phoneNumber}</h1>
                     <div class="flex flex-col justify-center items-center my-8">
                         {order?.products?.map((c) => (
