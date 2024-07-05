@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import AdminMenu from './AdminMenu'
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import StaffMenu from "./StaffMenu";
 
 const StaffOrderDetail = () => {
     const params = useParams();
@@ -60,12 +59,8 @@ const StaffOrderDetail = () => {
     };
 
     return (
-        <div className="flex flex-row h-auto m-8 mx-24">
-            <div class="basis-1/6 h-100% bg-slate-100">
-                <StaffMenu />
-            </div>
-            <div class="basis-4/6 text-center m-4 flex flex-col justify-start">
-                <h1 className="text-center w-full text-3xl">Admin Order Detail</h1>
+        <div class="basis-4/6 text-center m-4 flex flex-col justify-start">
+                <h1 className="text-center w-full text-3xl">Order Detail</h1>
                 <div class="flex flex-col w-1/2 mt-8">
                     <h1 className="text-left w-full text-3xl my-2">Địa chỉ giao hàng</h1>
                     <h1 className="text-left w-full text-lg my-2">Tỉnh, thành phố : {order?.addressShipping?.province}</h1>
@@ -75,6 +70,7 @@ const StaffOrderDetail = () => {
                 </div>
                 <div class="flex flex-col w-full mt-2">
                     <h1 className="text-left w-full text-3xl my-2">Thông tin đơn hàng</h1>
+                    <h1 className="text-left w-full text-lg my-2">OrderId : {order?.orderId}</h1>
                     <h1 className="text-left w-full text-lg my-2">Phương thức thanh toán : {order?.PaymentMethod}</h1>
                     <h1 className="text-left w-full text-lg my-2">Số điện thoại đặt hàng : {order?.phoneNumber}</h1>
                     <div class="flex flex-col justify-center items-center my-8">
@@ -115,7 +111,7 @@ const StaffOrderDetail = () => {
                     {!(initStatus == "Cancelled" || initStatus == "Delivered") ? (
                         <>
                             <div class="flex flex-col mt-4 w-32">
-                                <button className="bg-black border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2"
+                                <button className="bg-black border border-black text-[20px] px-6 py-2 uppercase text-white cursor-pointer mt-2 rounded-lg"
                                     onClick={(e)=>{
                                         e.preventDefault();
                                         updateOrder();
@@ -132,7 +128,6 @@ const StaffOrderDetail = () => {
                     )}
                 </div>
             </div>
-        </div>
     )
 }
 

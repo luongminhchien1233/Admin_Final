@@ -25,6 +25,13 @@ import NewOrder from "./pages/NewOrder";
 import NewReview from "./pages/NewReview";
 import NewOrderDetail from "./pages/NewOrderDetail";
 import NewCoupon from "./pages/NewCoupon";
+import NewStaffDashboard from "./pages/NewStaffDashboard";
+import NewStaffUser from "./pages/NewStaffUser";
+import NewStaffOrder from "./pages/NewStaffOrder";
+import NewStaffOrderDetail from "./pages/NewStaffOrderDetail";
+import NewStaffProduct from "./pages/NewStaffProduct";
+import StaffProductDetail from "./pages/StaffProductDetail";
+import NewStaffProductDetail from "./pages/NewStaffProductDetail";
 
 function App() {
   return (
@@ -44,10 +51,12 @@ function App() {
           <Route path="product/product-info/:slug" element={<NewProductDetail />} />
         </Route>
         <Route path="/staff" element={<PrivateRoute />}>
-          <Route path="home" element={<StaffDashboard />} />
-          <Route path="user" element={<StaffUser />} />
-          <Route path="order" element={<StaffOrder />} />
-          <Route path="order/:id" element={<StaffOrderDetail />} />
+          <Route path="home" element={<NewStaffDashboard />} />
+          <Route path="user" element={<NewStaffUser />} />
+          <Route path="order" element={<NewStaffOrder />} />
+          <Route path="product" element={<NewStaffProduct />} />
+          <Route path="product/product-info/:slug" element={<NewStaffProductDetail />} />
+          <Route path="order/:id" element={<NewStaffOrderDetail />} />
         </Route>
       </Routes>
     </>
