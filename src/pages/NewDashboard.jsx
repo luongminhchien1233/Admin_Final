@@ -50,7 +50,7 @@ function classNames(...classes) {
 export default function NewDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
-    <Layout>
+    <Layout title={"Dashboard"}>
       <>
       <div>
         <Dialog className="relative z-50 lg:hidden" open={sidebarOpen} onClose={setSidebarOpen}>
@@ -75,7 +75,7 @@ export default function NewDashboard() {
                 <div className="flex h-16 shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="../src/assets/imgs/new-logo.png"
+                    src="/assets/imgs/new-logo.png"
                     alt="LC Store"
                   />
                 </div>
@@ -130,7 +130,7 @@ export default function NewDashboard() {
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="../src/assets/imgs/new-logo.png"
+                src="/assets/imgs/new-logo.png"
                 alt="LC Store"
               />
             </div>
@@ -192,7 +192,7 @@ export default function NewDashboard() {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-50"
-                      src="../src/assets/imgs/new-logo.png"
+                      src="/assets/imgs/new-logo.png"
                       alt=""
                     />
                     <span className="hidden lg:flex lg:items-center">

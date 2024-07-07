@@ -53,7 +53,7 @@ function classNames(...classes) {
 export default function NewOrderDetail() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
-    <Layout>
+    <Layout title={"Order Detail"}>
       <>
       <div>
         <Dialog className="relative z-50 lg:hidden" open={sidebarOpen} onClose={setSidebarOpen}>
@@ -78,7 +78,7 @@ export default function NewOrderDetail() {
                 <div className="flex h-16 shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="../src/assets/imgs/new-logo.png"
+                    src="/assets/imgs/new-logo.png"
                     alt="LC Store1"
                   />
                 </div>
@@ -133,7 +133,7 @@ export default function NewOrderDetail() {
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="/src/assets/imgs/new-logo.png"
+                src="/assets/imgs/new-logo.png"
                 alt="LC Store"
               />
             </div>
@@ -195,7 +195,7 @@ export default function NewOrderDetail() {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-50"
-                      src="/src/assets/imgs/new-logo.png"
+                      src="/assets/imgs/new-logo.png"
                       alt=""
                     />
                     <span className="hidden lg:flex lg:items-center">
