@@ -224,7 +224,7 @@ const AdminOrder = () => {
                                                                         <a
                                                                             onClick={(e) => {
                                                                                 e.preventDefault();
-                                                                                navigate(`${order?._id}`)
+                                                                                navigate(`${order?.orderId}`)
                                                                             }}
                                                                             className="text-indigo-600 cursor-pointer hover:text-indigo-900">
                                                                             Edit
