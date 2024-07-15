@@ -32,6 +32,7 @@ import AdminOrder from './AdminOrder';
 import Layout from '../components/form/Auth/Layout'
 import { FaBullseye } from 'react-icons/fa';
 import StaffOrder from './StaffOrder';
+import {useNavigate } from "react-router-dom";
 
 const navigation = [
     { name: 'Overview', href: '/staff/home', icon: HomeIcon, current: false },
@@ -50,6 +51,19 @@ function classNames(...classes) {
 
 export default function NewStaffOrder() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [auth, setAuth] = useAuth();
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    navigate("/");
+  };
   return (
     <Layout title={"Order"}>
       <>
@@ -210,15 +224,17 @@ export default function NewStaffOrder() {
                     {userNavigation.map((item) => (
                       <MenuItem key={item.name}>
                         {({ focus }) => (
-                          <a
-                            href={item.href}
+                          <button
+                            onClick={() => {
+                              handleLogout();
+                            }}
                             className={classNames(
                               focus ? 'bg-gray-50' : '',
                               'block px-3 py-1 text-sm leading-6 text-gray-900',
                             )}
                           >
                             {item.name}
-                          </a>
+                          </button>
                         )}
                       </MenuItem>
                     ))}

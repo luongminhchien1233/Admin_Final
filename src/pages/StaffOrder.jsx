@@ -230,7 +230,7 @@ const StaffOrder = () => {
                                     <button className="text-indigo-600 hover:text-indigo-900"
                                         onClick={(e) =>{
                                             e.preventDefault();
-                                            navigate(`${p?._id}`)
+                                            navigate(`${p?.orderId}`)
                                         }}
                                     >
                                         Edit<span className="sr-only"></span>

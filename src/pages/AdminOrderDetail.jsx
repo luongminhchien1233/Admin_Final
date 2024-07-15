@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import AdminMenu from './AdminMenu'
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import {toast} from "react-toastify";
+
 
 const AdminOrderDetail = () => {
     const params = useParams();
@@ -34,13 +36,18 @@ const AdminOrderDetail = () => {
     const updateOrder = async () => {
         try {
             const { data } = await axios.put(
-                `https://api-nhaxinh.onrender.com/api/order/admin/${params.id}`,{
+                `https://api-nhaxinh.onrender.com/api/order/admin/${order?.orderId}`,{
                     status: updateStatus,
                 }
             );
-            await getOrder();
+            if(data?.status == "success"){
+                toast.success(data?.message);
+                await getOrder();
+            }else{
+                toast.error(data?.message);
+            }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -73,7 +80,9 @@ const AdminOrderDetail = () => {
                     <h1 className="text-left w-full text-lg my-2">OrderId : {order?.orderId}</h1>
                     <h1 className="text-left w-full text-lg my-2">Phương thức thanh toán : {order?.PaymentMethod}</h1>
                     <h1 className="text-left w-full text-lg my-2">Trạng thái thanh toán thanh toán : {order?.PaymentStatus}</h1>
+                    <h1 className="text-left w-full text-lg my-2">Họ và tên người đặt hàng : {order?.name}</h1>
                     <h1 className="text-left w-full text-lg my-2">Số điện thoại đặt hàng : {order?.phoneNumber}</h1>
+                    <h1 className="text-left w-full text-lg my-2">Email đặt hàng : {order?.email}</h1>
                     <div class="flex flex-col justify-center items-center my-8">
                         {order?.products?.map((c) => (
                             <>
@@ -103,8 +112,8 @@ const AdminOrderDetail = () => {
                             onChange={(e) => setUpdateStatus(e.target.value)}
                             value={updateStatus}
                         >
-                            <option key={"Pending"} value={"Pending"}>Pending</option>
                             <option key={"Processing"} value={"Processing"}>Processing</option>
+                            <option key={"Dispatched"} value={"Dispatched"}>Dispatched</option>
                             <option key={"Delivered"} value={"Delivered"}>Delivered</option>
                             <option key={"Cancelled"} value={"Cancelled"}>Cancelled</option>
                         </select>

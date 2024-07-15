@@ -21,8 +21,7 @@ const AdminCategory = () => {
       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/room/all");
       setRooms(data?.data);
     }catch(error){
-        console.log(error);
-        toast.error("Something wwent wrong in getting catgeory");
+      toast.error(error.response.data.message);
     }
   };
   //handle Form
@@ -41,8 +40,7 @@ const AdminCategory = () => {
       }
       await getAllCategory();
     } catch (error) {
-      console.log(error);
-      toast.error("somthing went wrong in input form");
+      toast.error(error.response.data.message);
     }
   };
 
@@ -52,8 +50,7 @@ const AdminCategory = () => {
       const { data } = await axios.get("https://api-nhaxinh.onrender.com/api/category/all");
       setCategories(data.data);
     }catch(error){
-        console.log(error);
-        toast.error("Something wwent wrong in getting catgeory");
+      toast.error(error.response.data.message);
     }
   };
 
@@ -70,7 +67,7 @@ const AdminCategory = () => {
       }
       await getAllCategory();
     } catch (error) {
-      toast.error("Somtihing went wrong");
+      toast.error(error.response.data.message);
     }
   };
 

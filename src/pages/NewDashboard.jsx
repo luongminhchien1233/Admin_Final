@@ -28,6 +28,8 @@ import { useAuth } from '../context/auth';
 import axios from 'axios';
 import AdminDashboard from './AdminDashboard';
 import Layout from '../components/form/Auth/Layout'
+import {useNavigate } from "react-router-dom";
+
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard/home', icon: HomeIcon, current: true },
@@ -49,6 +51,19 @@ function classNames(...classes) {
 
 export default function NewDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [auth, setAuth] = useAuth();
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    navigate("/");
+  };
   return (
     <Layout title={"Dashboard"}>
       <>
@@ -209,15 +224,17 @@ export default function NewDashboard() {
                     {userNavigation.map((item) => (
                       <MenuItem key={item.name}>
                         {({ focus }) => (
-                          <a
-                            href={item.href}
+                          <button
+                            onClick={() => {
+                              handleLogout();
+                            }}
                             className={classNames(
                               focus ? 'bg-gray-50' : '',
                               'block px-3 py-1 text-sm leading-6 text-gray-900',
                             )}
                           >
                             {item.name}
-                          </a>
+                          </button>
                         )}
                       </MenuItem>
                     ))}

@@ -75,7 +75,7 @@ const AdminCreateProduct = () => {
             }
             
         } catch (error) {
-            toast.error("something went wrong");
+            toast.error(error.response.data.message);
         }
     };
 
