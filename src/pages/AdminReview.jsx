@@ -46,7 +46,7 @@ const AdminReview = () => {
     };
 
   return (
-    <div class="w-full text-center m-4 flex flex-col justify-start">
+    <div class="w-full m-4 flex flex-col justify-start">
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
@@ -56,6 +56,7 @@ const AdminReview = () => {
                 </p>
                 </div>
             </div>
+            
             <div className="mt-8 flow-root">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -63,15 +64,21 @@ const AdminReview = () => {
                     <thead>
                         <tr>
                         <th scope="col" className="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                            Name
+                            User
                         </th>
-                        <th scope="col" className="px-3 py-3.5 pl-16 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            Product
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            Image
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Star
                         </th>
-                        <th scope="col" className="px-3 py-3.5 pl-32 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Review Day
                         </th>
-                        <th scope="col" className="px-3 py-3.5 pl-32 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Comment
                         </th>
                         <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
@@ -85,6 +92,8 @@ const AdminReview = () => {
                             <td className="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                                 {p.userID?.firstname} {p.userID?.lastname}
                             </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{p.productID.name}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900"><img className="h-14 w-14" src={p.productID?.images[0]?.url} alt="" /></td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{p.star}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{formatDate(p.createdAt)}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{p.comment}</td>

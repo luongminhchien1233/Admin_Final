@@ -22,7 +22,7 @@ const AdminProductDetails = () => {
     const [desc, setDesc] = useState("");
     const [price, setPrice] = useState(0);
     const [sale, setSale] = useState(0);
-    const [enable, setEnable] = useState(true);
+    const [enable, setEnable] = useState(null);
     const [quantity, setQuantity] = useState(0);
     const [shortDesc, setShortDesc] = useState("");
     const [category, setCategory] = useState("");
@@ -363,7 +363,8 @@ const AdminProductDetails = () => {
                     <select id="district" class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         onChange={(e) => {
                             setEnable(e.target.value);
-                        }} value={enable}
+                        }} 
+                        value={enable}
                     >
                         <option value="true">True</option>
                         <option value="false">False</option>
