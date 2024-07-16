@@ -5,9 +5,10 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import Layout from "../components/form/Auth/Layout";
 import { useNavigate } from "react-router-dom";
-
+import { useLoading } from "../context/loading";
 const AdminCreateProduct = () => {
     const [categories, setCategories] = useState([]);
+    const {showLoading, hideLoading} = useLoading();
     const [rooms, setRooms] = useState([]);
     const descRef = useRef(null);
     const shortDescRef = useRef(null);
@@ -64,17 +65,18 @@ const AdminCreateProduct = () => {
             images.forEach((image, index) => {
                 productData.append("images", image?.file); // Append images to the FormData
             });
-            
+            showLoading();
             const { data } = await axios.post(
                 "https://api-nhaxinh.onrender.com/api/product/create-product",
                 productData
             );
-
+            hideLoading();
             if(data?.status == "success"){
                 navigate(`/dashboard/product`);
             }
             
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

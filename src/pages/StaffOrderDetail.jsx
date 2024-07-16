@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import AdminMenu from './AdminMenu'
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useLoading } from "../context/loading";
 const StaffOrderDetail = () => {
     const params = useParams();
     const [order, setOrder] = useState({});
     const [updateStatus, setUpdateStatus] = useState("");
     const [initStatus, setInitStatus] = useState("");
+    const {showLoading, hideLoading} = useLoading();
+
 
 
     useEffect(() => {
@@ -33,13 +35,16 @@ const StaffOrderDetail = () => {
 
     const updateOrder = async () => {
         try {
+            showLoading();
             const { data } = await axios.put(
                 `https://api-nhaxinh.onrender.com/api/order/admin/${params.id}`,{
                     status: updateStatus,
                 }
             );
+            hideLoading();
             await getOrder();
         } catch (error) {
+            hideLoading();
             console.log(error);
         }
     };

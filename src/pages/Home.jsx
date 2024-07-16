@@ -6,16 +6,18 @@ import {useNavigate } from "react-router-dom";
 import {toast} from "react-toastify";
 import axios from "axios";
 import Layout from "../components/form/Auth/Layout.jsx";
-
+import { useLoading } from "../context/loading.jsx";
 
 const Home = () => {
     const [auth, setAuth] = useAuth();
     const [visible, setVisible] = useState(false);
+    const {showLoading, hideLoading} = useLoading();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         try {
+          showLoading();
           const res = await axios.post("https://api-nhaxinh.onrender.com/api/user/loginUser", {
             username,
             password,
@@ -28,12 +30,15 @@ const Home = () => {
             });
             console.log("Token" + res.data.data?.token);
             localStorage.setItem("auth", JSON.stringify(res.data));
+            hideLoading();
             navigate(location.state ||"/");
             setVisible(false);
           } else {
+            hideLoading();
             toast.error(res.data.message);
           }
         } catch (error) {
+          hideLoading();
           toast.error(error.response.data.message);
         }
       };

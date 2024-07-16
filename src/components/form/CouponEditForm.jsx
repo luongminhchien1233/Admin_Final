@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-const CouponEditForm = ({ handleSubmit, name, setName, quantity, setQuantity, discount, setDiscount, startDate, setStartDate }) => {
-  return (
+const CouponEditForm = ({ handleSubmit, name, setName, quantity, setQuantity, discount, setDiscount, startDate, setStartDate }) => {    
+return (
     <div>
         <div className="flex flex-col">
             <div class="flex flex-col mt-4 w-full">

@@ -4,7 +4,9 @@ import { toast } from 'react-toastify';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { useLoading } from '../../context/loading';
 const CouponCreateForm = ({ handleSubmit }) => {
+  const {showLoading, hideLoading, loading } = useLoading();
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [discount, setDiscount] = useState("");
@@ -14,6 +16,7 @@ const CouponCreateForm = ({ handleSubmit }) => {
     const formattedDate = startDate.toISOString().split('T')[0];
     console.log(formattedDate);
     try {
+      showLoading();
       const { data } = await axios.post("https://api-nhaxinh.onrender.com/api/coupon/create", {
         name: name, quantity: quantity, discount: discount, expiry: startDate
       });
@@ -25,15 +28,39 @@ const CouponCreateForm = ({ handleSubmit }) => {
       } else {
         toast.error(data.message);
       }
-      await getAllCategory();
+      hideLoading();
+      // await getAllCategory();
     } catch (error) {
+      hideLoading();
       //toast.error(error.response.data.message);
     }
   };
 
   
   return (
-    <div>
+    <>
+      {loading && (
+  <div className="fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-50 z-500">
+    <div
+      className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+      role="status"
+    >
+      <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+        Loading...
+      </span>
+    </div>
+    <div
+      className="inline-block h-12 w-12 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+      role="status"
+    >
+      <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+        Loading...
+      </span>
+    </div>
+  </div>
+)}
+
+      <div>
         <div className="flex flex-col">
             <div class="flex flex-col mt-4 w-full">
                 <label className="text-left text-lg"for="">Name<span class="required">*</span></label>
@@ -72,6 +99,8 @@ const CouponCreateForm = ({ handleSubmit }) => {
             </div>
         </div>
     </div>
+    </>
+    
   )
 }
 

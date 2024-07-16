@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import { toast } from "react-toastify";
 import { FaEdit } from "react-icons/fa";
-
+import { useLoading } from '../../context/loading';
 const FileInput = ({productId, imgId, onUploadSuccess}) => {
+    const { showLoading, hideLoading } = useLoading();
     const fileInputRef = useRef(null);
 
     const handleClick = () => {
@@ -26,6 +27,7 @@ const FileInput = ({productId, imgId, onUploadSuccess}) => {
             for (let [key, value] of productData.entries()) {
                 console.log(key, value);
             }
+            showLoading();
             axios.post(
                 `https://api-nhaxinh.onrender.com/api/product/updateImageProduct/${productId}`,
                 productData
@@ -36,6 +38,7 @@ const FileInput = ({productId, imgId, onUploadSuccess}) => {
                 } else {
                     
                 }
+                hideLoading();
             });
         }
     };

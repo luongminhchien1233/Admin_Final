@@ -4,12 +4,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
+import { useLoading } from "../context/loading";
 const AdminOrderDetail = () => {
     const params = useParams();
     const [order, setOrder] = useState({});
     const [updateStatus, setUpdateStatus] = useState("");
     const [initStatus, setInitStatus] = useState("");
+    const {showLoading, hideLoading} = useLoading();
+
 
 
     useEffect(() => {
@@ -35,6 +37,7 @@ const AdminOrderDetail = () => {
 
     const updateOrder = async () => {
         try {
+            showLoading();
             const { data } = await axios.put(
                 `https://api-nhaxinh.onrender.com/api/order/admin/${order?.orderId}`, {
                 status: updateStatus,
@@ -42,11 +45,14 @@ const AdminOrderDetail = () => {
             );
             if (data?.status == "success") {
                 toast.success(data?.message);
+                hideLoading();
                 await getOrder();
             } else {
+                hideLoading();
                 toast.error(data?.message);
             }
         } catch (error) {
+            hideLoading();
             toast.error(error.response.data.message);
         }
     };

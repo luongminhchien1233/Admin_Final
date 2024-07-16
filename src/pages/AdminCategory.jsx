@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react'
 import {toast} from "react-toastify";
 import axios from "axios";
 import { Modal } from "antd";
+import { useLoading } from "../context/loading";
 const AdminCategory = () => {
+  const {showLoading, hideLoading} = useLoading();
   const [rooms, setRooms] = useState([])
   const [categories, setCategories] = useState([])
   const [name, setName] = useState("");
@@ -28,6 +30,7 @@ const AdminCategory = () => {
   const handleSubmit = async () => {
     //e.preventDefault();
     try {
+      showLoading();
       const { data } = await axios.post("https://api-nhaxinh.onrender.com/api/category/create-cate", {
         nameCate: name, roomId: roomId,
       });
@@ -38,8 +41,10 @@ const AdminCategory = () => {
       } else {
         toast.error(data.message);
       }
+      hideLoading();
       await getAllCategory();
     } catch (error) {
+      hideLoading();
       toast.error(error.response.data.message);
     }
   };
@@ -57,6 +62,7 @@ const AdminCategory = () => {
   //delete category
   const handleDelete = async (pId) => {
     try {
+      showLoading();
       const { data } = await axios.delete(
         `https://api-nhaxinh.onrender.com/api/category/${pId}`
       );
@@ -65,8 +71,10 @@ const AdminCategory = () => {
       } else {
         //toast.error(data.message);
       }
+      hideLoading();
       await getAllCategory();
     } catch (error) {
+      hideLoading();
       toast.error(error.response.data.message);
     }
   };
@@ -75,6 +83,7 @@ const AdminCategory = () => {
   const handleUpdate = async (e) => {
     //e.preventDefault();
     try {
+      showLoading();
       const { data } = await axios.put(
         `https://api-nhaxinh.onrender.com/api/category/${selected._id}`,
         { name: updatedName, roomId: updateRoomId }
@@ -88,7 +97,9 @@ const AdminCategory = () => {
       } else {
         //toast.error(data.message);
       }
+      hideLoading();
     } catch (error) {
+      hideLoading();
       toast.error("Somtihing went wrong");
     }
   };

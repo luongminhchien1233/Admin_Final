@@ -1,6 +1,8 @@
 import React from 'react'
 import { toast } from 'react-toastify';
+import { useLoading } from '../../context/loading';
 const CategoryForm = ({ handleSubmit, value, setValue, roomId, setRoomId, rooms }) => {
+  const { loading } = useLoading();
   const handleFormSubmit = (e) => {
     console.log("Form submit");
 
@@ -13,6 +15,28 @@ const CategoryForm = ({ handleSubmit, value, setValue, roomId, setRoomId, rooms 
     handleSubmit();
   };
   return (
+    <>
+    {loading && (
+  <div className="fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-50 z-500">
+    <div
+      className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+      role="status"
+    >
+      <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+        Loading...
+      </span>
+    </div>
+    <div
+      className="inline-block h-12 w-12 animate-[spinner-grow_0.75s_linear_infinite] rounded-full bg-current align-[-0.125em] opacity-0 motion-reduce:animate-[spinner-grow_1.5s_linear_infinite]"
+      role="status"
+    >
+      <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+        Loading...
+      </span>
+    </div>
+  </div>
+)}
+    
     <div>
         <div className="flex flex-col">
             <div class="flex flex-col mt-4 w-full">
@@ -45,6 +69,7 @@ const CategoryForm = ({ handleSubmit, value, setValue, roomId, setRoomId, rooms 
             </div>
         </div>
     </div>
+    </>
   )
 }
 

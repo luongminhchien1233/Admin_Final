@@ -8,9 +8,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import FileInput from "../components/button/FileInput";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaImages } from "react-icons/fa";
-
+import { useLoading } from "../context/loading";
 const AdminProductDetails = () => {
     const [categories, setCategories] = useState([]);
+    const {showLoading, hideLoading} = useLoading();
     const [rooms, setRooms] = useState([]);
     const descRef = useRef(null);
     const shortDescRef = useRef(null);
@@ -44,6 +45,7 @@ const AdminProductDetails = () => {
     const handleDeleteImage = (index) => {
         const image = images[index];
         console.log(image);
+        showLoading();
         const url = `https://api-nhaxinh.onrender.com/api/product/updateImageDelete?id_Product=${id}&url_image=${image.url}&id_image=${image._id}`;
         axios.delete(url)
             .then(response => {
@@ -53,8 +55,10 @@ const AdminProductDetails = () => {
                 } else {
 
                 }
+                hideLoading();
             })
             .catch(error => {
+                hideLoading();
                 console.error('There was an error deleting the image!', error);
             });
     };
@@ -86,6 +90,7 @@ const AdminProductDetails = () => {
         //     { k: "materials", v: materials }
         // ]))
         try {
+            showLoading();
             const { data } = await axios.put(`https://api-nhaxinh.onrender.com/api/product/updateProduct/${id}`,
                 {
                     name: name,
@@ -107,9 +112,12 @@ const AdminProductDetails = () => {
             );
             if (data?.status == "success") {
                 toast.success(data?.message);
+                hideLoading();
                 await getProduct();
             }
+            hideLoading();
         } catch (error) {
+            hideLoading();
             console.log(error);
         }
     };
@@ -146,6 +154,7 @@ const AdminProductDetails = () => {
         if (files.length > 0) {
             const productData = new FormData();
             productData.append("images", files[0]); 
+            showLoading();
             axios.post(
                 `https://api-nhaxinh.onrender.com/api/product/updateImageAdd/${id}`,
                 productData
@@ -153,11 +162,14 @@ const AdminProductDetails = () => {
                 const data = response.data;
                 if (data?.status === "success") {
                     toast.success(data?.message);
+                    hideLoading();
                     return getProduct();
                 } else {
+                    hideLoading();
                     toast.error(data?.message);
                 }
             }).catch(error =>{
+                hideLoading();
                 toast.error(error.response.data.message);
             });
         }

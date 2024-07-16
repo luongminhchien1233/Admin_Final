@@ -27,6 +27,7 @@ ChartJS.register(
   import { useRef } from "react";
 
 import { Line , getElementsAtEvent } from "react-chartjs-2";
+import { useLoading } from "../context/loading";
 const AdminDashboard = () => {
   const [auth, setAuth] = useAuth();
   const [productCount, setProductCount] = useAuth("");
@@ -38,6 +39,8 @@ const AdminDashboard = () => {
   const [selectDayData, setSelectDayData]= useState(null);   
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const {showLoading, hideLoading} = useLoading();
+
   const options = {
     
   };
@@ -72,6 +75,7 @@ const AdminDashboard = () => {
         if (new Date(formatFDate) > new Date(formatEDate)) {
             return;
         }
+        showLoading();
         const { data } = await axios.get(
             `https://api-nhaxinh.onrender.com/api/statistical/orderDate?startDate=${formatFDate}&endDate=${formatEDate}`
         );
@@ -89,7 +93,9 @@ const AdminDashboard = () => {
             };
             setSelectDayData(temp);        
         }
+        hideLoading();
     } catch (error) {
+        hideLoading();
         console.log(error);
     }
   };

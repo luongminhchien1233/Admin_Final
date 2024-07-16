@@ -6,9 +6,10 @@ import { Modal } from "antd";
 import CouponCreateForm from "../components/form/CouponCreateForm";
 import CouponEditForm from "../components/form/CouponEditForm";
 import { toast } from 'react-toastify';
-
+import { useLoading } from "../context/loading";
 const AdminCoupon = () => {
     const [coupons, setCoupons] = useState([]);
+    const {showLoading, hideLoading} = useLoading();
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     const [editvisible, setEditVisible] = useState(false);
@@ -30,11 +31,14 @@ const AdminCoupon = () => {
     //delete category
   const handleDelete = async (pId) => {
     try {
+      showLoading();
       const { data } = await axios.delete(
         `https://api-nhaxinh.onrender.com/api/coupon/${pId}`
       );
+      hideLoading();
       await getCoupons();
     } catch (error) {
+      hideLoading();
       toast.error(error.respone.data.message);
     }
   };
@@ -42,6 +46,7 @@ const AdminCoupon = () => {
     //delete category
     const handleUpdate = async () => {
         try {
+        showLoading();
         const { data } = await axios.put(
             `https://api-nhaxinh.onrender.com/api/coupon/${selected?._id}`,{
                 name: name, quantity: quantity, discount: discount, expiry: startDate
@@ -49,9 +54,11 @@ const AdminCoupon = () => {
         );
         if(data?.status == "success"){
             setEditVisible(false);
+            hideLoading();
             await getCoupons();
         }
         } catch (error) {
+          hideLoading();
             toast.error(error.respone.data.message);
         }
     };

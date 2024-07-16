@@ -4,12 +4,15 @@ import { useAuth } from '../context/auth';
 import axios from 'axios';
 import { Modal } from "antd";
 import UserForm from "../components/form/UserForm";
-
+import { useLoading } from "../context/loading";
+import { toast } from "react-toastify";
 const AdminUser = () => {
     const [users, setUsers] = useState([]);
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState({});
     const [updateRole, setUpdateRole] = useState("");
+    const {showLoading, hideLoading} = useLoading();
+
 
     const getAllUsers = async() =>{
         try{
@@ -23,6 +26,7 @@ const AdminUser = () => {
 
   const handleSubmit = async () => {
     try {
+      showLoading();
       const { data } = await axios.put(`https://api-nhaxinh.onrender.com/api/user/admin/update/${selected?._id}`, {
         role: updateRole
       });
@@ -32,9 +36,11 @@ const AdminUser = () => {
       } else {
         toast.error(data.message);
       }
+      hideLoading();
       await getAllUsers();
     } catch (error) {
       console.log(error);
+      hideLoading();
       toast.error("somthing went wrong in input form");
     }
   };

@@ -5,9 +5,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import { MdDeleteOutline } from "react-icons/md";
-
+import { useLoading } from "../context/loading";
 const AdminReview = () => {
     const [reivews, setReviews] = useState([]);
+    const {showLoading, hideLoading} = useLoading();
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,6 +29,7 @@ const AdminReview = () => {
 
     const toogleReview = async (pId, value) => {
         try {
+            showLoading();
             const { data } = await axios.put(
                 `https://api-nhaxinh.onrender.com/api/review/${pId}`, {
                 enable: value
@@ -34,9 +37,12 @@ const AdminReview = () => {
             );
             if (data?.status == "success") {
                 toast.success(data?.message);
+                hideLoading();
                 await getReviews();
             }
+            hideLoading();
         } catch (error) {
+            hideLoading();
             console.log(error);
         }
     };
@@ -44,15 +50,19 @@ const AdminReview = () => {
 
     const deleteReview = async (pId, value) => {
         try {
+            showLoading();
             const { data } = await axios.delete(
                 `https://api-nhaxinh.onrender.com/api/review/${pId}`
             );
             await getReviews();
             if (data?.status == "success") {
                 toast.success(data?.message);
+                hideLoading();
                 await getReviews();
             }
+            hideLoading();
         } catch (error) {
+            hideLoading();
             console.log(error);
         }
     };
